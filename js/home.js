@@ -21,23 +21,28 @@ const sprite = {
     direction: 'right' // Track the direction the sprite is facing
 };
 
+const woodTexture = new Image();
+woodTexture.src = 'images/pixel-wood.png';
+
 sprite.image.src = 'images/mc.png';
 
 function resizeCanvas() {
     const minSize = Math.min(window.innerWidth / grid.cols, window.innerHeight / grid.rows);
     grid.cellSize = minSize;
+
+    // Set canvas width and height based on the calculated cell size and grid dimensions
     canvas.width = grid.cols * grid.cellSize;
     canvas.height = grid.rows * grid.cellSize;
     sprite.width = grid.cellSize;
     sprite.height = grid.cellSize;
+
     drawSprite();
 }
 
 function drawGrid() {
-    ctx.strokeStyle = '#000';
     for (let row = 0; row < grid.rows; row++) {
         for (let col = 0; col < grid.cols; col++) {
-            ctx.strokeRect(col * grid.cellSize, row * grid.cellSize, grid.cellSize, grid.cellSize);
+            ctx.drawImage(woodTexture, col * grid.cellSize, row * grid.cellSize, grid.cellSize, grid.cellSize);
         }
     }
 }
@@ -91,12 +96,7 @@ function moveSprite(event) {
 }
 
 window.onload = function() {
-    sprite.image.onload = function() {
-        resizeCanvas();
-    };
-    if (sprite.image.complete) {
-        resizeCanvas();
-    }
+    resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 };
 

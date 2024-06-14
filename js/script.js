@@ -27,7 +27,7 @@ const regenRates = {
 
 const displayFormat = {
     willpower: true,
-    strength: true,
+    strength: false,
     endurance: false,
     wisdom: false,
     honor: false
@@ -154,6 +154,11 @@ window.onload = function() {
     // Go home functionality
     document.getElementById('go-home-button').addEventListener('click', function() {
         fadeOutAndNavigate('home.html');
+    });
+
+    // Go 3Dhome functionality
+    document.getElementById('go-3dhome-button').addEventListener('click', function() {
+        fadeOutAndNavigate('3dhome.html');
     });
 }
 
