@@ -39,6 +39,12 @@ button:hover {
     background-color: #555555;
 }
 
+#time {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
 .fade-out {
     opacity: 0;
 }

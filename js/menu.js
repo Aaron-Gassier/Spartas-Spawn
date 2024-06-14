@@ -5,6 +5,7 @@ document.getElementById('play-button').addEventListener('click', function() {
 document.getElementById('reset-button').addEventListener('click', function() {
     if (confirm('Are you sure you want to reset all progress?')) {
         localStorage.removeItem('spartanResources');
+        localStorage.removeItem('gameTime');
         alert('Progress has been reset.');
     }
 });
