@@ -8,11 +8,12 @@
     <link rel="icon" href="images/spartan-icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div id="time">Year 1, Day 5, Summer 8:00</div>
     <div class="container">
         <div class="left side">
             <button id="back-to-menu-button">Back to Menu</button>
+            <button id="go-home-button">Go Home</button>
         </div>
         <div class="middle side">
             <div id="actions">
@@ -23,16 +24,27 @@
             </div>
         </div>
         <div class="right side">
-            <div id="time">Year 1, Day 5, Summer 8:00</div>
-            <div id="resources">
-                <p>Strength: <span id="strength">0</span></p>
-                <p>Endurance: <span id="endurance">0</span></p>
-                <p>Wisdom: <span id="wisdom">0</span></p>
-                <p>Honor: <span id="honor">0</span></p>
+            <table id="resources">
+                <tr>
+                    <td class="resource-cell" data-resource="willpower">Willpower: <span id="willpower">0</span></td>
+                </tr>
+                <tr>
+                    <td class="resource-cell" data-resource="strength">Strength: <span id="strength">0</span></td>
+                </tr>
+                <tr>
+                    <td class="resource-cell" data-resource="endurance">Endurance: <span id="endurance">0</span></td>
+                </tr>
+                <tr>
+                    <td class="resource-cell" data-resource="wisdom">Wisdom: <span id="wisdom">0</span></td>
+                </tr>
+                <tr>
+                    <td class="resource-cell" data-resource="honor">Honor: <span id="honor">0</span></td>
+                </tr>
                 <!-- Add more resources as needed -->
-            </div>
+            </table>
         </div>
     </div>
+    <div id="tooltip" class="tooltip"></div>
     <script src="js/script.js"></script>
 </body>
 </html>

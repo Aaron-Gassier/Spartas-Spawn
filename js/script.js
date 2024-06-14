@@ -1,9 +1,37 @@
 let resources = {
+    willpower: 3,
     strength: 0,
     endurance: 0,
     wisdom: 0,
     honor: 0
     // Add more resources as needed
+};
+
+const maxResources = {
+    willpower: 3,
+    strength: 5,
+    endurance: 5,
+    wisdom: 5,
+    honor: 10000
+    // Set max values for each resource
+};
+
+const regenRates = {
+    willpower: 0.1,
+    strength: 0,
+    endurance: 0,
+    wisdom: 0,
+    honor: 0
+    // Set regen rates for each resource
+};
+
+const displayFormat = {
+    willpower: true,
+    strength: true,
+    endurance: false,
+    wisdom: false,
+    honor: false
+    // Toggle display format for each resource
 };
 
 let totalMinutesElapsed = 49440;
@@ -16,9 +44,33 @@ const timeConfig = {
 };
 
 function gatherResource(resource) {
-    resources[resource]++;
-    document.getElementById(resource).innerText = resources[resource];
+    if (resources.willpower >= 1) {
+        if (resources[resource] < maxResources[resource]) {
+            resources[resource]++;
+            resources.willpower--; // Decrease willpower by 1
+            updateResourceDisplay(resource);
+            updateResourceDisplay('willpower'); // Update willpower display
+            saveProgress();
+        }
+    }
+}
+
+function regenerateResources() {
+    for (const resource in resources) {
+        if (resources[resource] < maxResources[resource]) {
+            resources[resource] = Math.min(resources[resource] + regenRates[resource], maxResources[resource]);
+            updateResourceDisplay(resource);
+        }
+    }
     saveProgress();
+}
+
+function updateResourceDisplay(resource) {
+    if (displayFormat[resource]) {
+        document.getElementById(resource).innerText = `${Math.floor(resources[resource])}/${maxResources[resource]}`;
+    } else {
+        document.getElementById(resource).innerText = Math.floor(resources[resource]);
+    }
 }
 
 function saveProgress() {
@@ -41,9 +93,7 @@ function loadProgress() {
 
 function updateUI() {
     for (const resource in resources) {
-        if (resources.hasOwnProperty(resource)) {
-            document.getElementById(resource).innerText = resources[resource];
-        }
+        updateResourceDisplay(resource);
     }
 }
 
@@ -78,16 +128,57 @@ function advanceTime() {
     saveProgress();
 }
 
+function toggleDisplayFormat(resource) {
+    displayFormat[resource] = !displayFormat[resource];
+    updateResourceDisplay(resource);
+}
+
 window.onload = function() {
     loadProgress();
     document.body.classList.remove('fade-out'); // Remove fade-out class on load
     setInterval(advanceTime, 1000); // 1000 ms = 1 second
+    setInterval(regenerateResources, 200); // Regenerate resources every 0.2 seconds
+
+    // Add event listeners for resource tooltips
+    document.querySelectorAll('.resource-cell').forEach(element => {
+        element.addEventListener('mouseover', showTooltip);
+        element.addEventListener('mouseout', hideTooltip);
+        element.addEventListener('mousemove', moveTooltip);
+    });
+    
+    // Back to Menu functionality
+    document.getElementById('back-to-menu-button').addEventListener('click', function() {
+        fadeOutAndNavigate('index.html');
+    });
+
+    // Go home functionality
+    document.getElementById('go-home-button').addEventListener('click', function() {
+        fadeOutAndNavigate('home.html');
+    });
 }
 
-// Back to Menu functionality
-document.getElementById('back-to-menu-button').addEventListener('click', function() {
-    fadeOutAndNavigate('index.html');
-});
+function showTooltip(event) {
+    const resource = event.currentTarget.getAttribute('data-resource');
+    const tooltip = document.getElementById('tooltip');
+    tooltip.innerHTML = `
+        <strong>${resource.charAt(0).toUpperCase() + resource.slice(1)}</strong><br>
+        Max: ${maxResources[resource]}<br>
+        Regen Rate: ${regenRates[resource]}
+    `;
+    tooltip.style.visibility = 'visible';
+    moveTooltip(event); // Position the tooltip
+}
+
+function hideTooltip() {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.visibility = 'hidden';
+}
+
+function moveTooltip(event) {
+    const tooltip = document.getElementById('tooltip');
+    tooltip.style.left = event.pageX + 10 + 'px';
+    tooltip.style.top = event.pageY + 10 + 'px';
+}
 
 function fadeOutAndNavigate(url) {
     document.body.classList.add('fade-out');

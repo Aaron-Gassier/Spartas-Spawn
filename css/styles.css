@@ -1,5 +1,5 @@
 body {
-font-family: 'Cinzel', serif;
+    font-family: 'Cinzel', serif;
     background-color: #121212;
     color: #ffffff;
     text-align: center;
@@ -20,15 +20,16 @@ font-family: 'Cinzel', serif;
 
 .container {
     display: flex;
-    height: 95%;
+    height: 100%;
+    width: 95%;
     margin: 0 auto;
     padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     transition: opacity 1s ease-out;
+    background: #333333;
 }
 
 .left {
-    flex: 1;
+    flex: 2;
 }
 
 .middle {
@@ -36,27 +37,30 @@ font-family: 'Cinzel', serif;
 }
 
 .right {
-    flex: 3;
+    flex: 2;
 }
 
 .side {
-    background: #333333;
+    background: #605555;
     border-radius: 4px;
     margin-right: 4px;
     margin-left: 4px;
 }
 
 #game-icon, #menu-icon {
-    width: 300px;
-    height: 300px;
+    width: 70%;
+    aspect-ratio: 1/1;
     margin-bottom: 20px;
+    object-fit: contain;
 }
 
 button {
-    width: 175px;
-    margin: 5px;
-    padding: 10px 20px;
-    font-size: 16px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 3px;
+    margin-top: 3px;
+    padding: 5px 10px;
+    font-size: auto;
     cursor: pointer;
     background-color: #444444;
     color: #ffffff;
@@ -64,6 +68,7 @@ button {
     border-radius: 4px;
     font-family: 'Cinzel', serif;
     transition: background-color 0.3s;
+    object-fit: contain;
 }
 button:hover {
     background-color: #555555;
@@ -75,6 +80,38 @@ button:hover {
     font-weight: bold;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    object-fit: contain;
+    font-size: 70%;
+}
+
+.resource-cell {
+    padding: 10px;
+    cursor: pointer;
+}
+
 .fade-out {
     opacity: 0;
+}
+
+.tooltip {
+    position: absolute;
+    background-color: #444444;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    visibility: hidden;
+    z-index: 10;
+    transition: opacity 0.3s;
+}
+
+canvas {
+    border: 1px solid #000;
+    background-color: #ccc;
+    width: 100%;
+    aspect-ratio: 12/8;
+    margin-top: 10px;
 }
