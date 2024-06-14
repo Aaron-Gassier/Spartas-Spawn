@@ -5,7 +5,7 @@ document.getElementById('play-button').addEventListener('click', function() {
 document.getElementById('reset-button').addEventListener('click', function() {
     if (confirm('Are you sure you want to reset all progress?')) {
         localStorage.removeItem('spartanResources');
-        localStorage.removeItem('gameTime');
+        localStorage.removeItem('totalMinutesElapsed');
         alert('Progress has been reset.');
     }
 });
@@ -26,7 +26,7 @@ muteButton.addEventListener('click', function() {
 });
 
 function fadeOutAndNavigate(url) {
-    const mainMenu = document.getElementById('main-menu');
+    const mainMenu = document.getElementById('box');
     document.body.classList.add('fade-out');
     mainMenu.classList.add('fade-out');
     themeSong.volume = 1.0;

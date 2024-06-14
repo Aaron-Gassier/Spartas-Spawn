@@ -8,25 +8,30 @@
     <link rel="icon" href="images/spartan-icon.png" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div id="app">
-        <img src="images/spartan-icon.png" alt="Spartan Icon" id="game-icon">
-        <h1>Sparta's Spawn</h1>
-        <div id="resources">
-            <p>Strength: <span id="strength">0</span></p>
-            <p>Endurance: <span id="endurance">0</span></p>
-            <p>Wisdom: <span id="wisdom">0</span></p>
-            <p>Honor: <span id="honor">0</span></p>
-            <!-- Add more resources as needed -->
+    <div class="container">
+        <div class="left side">
+            <button id="back-to-menu-button">Back to Menu</button>
         </div>
-        <div id="actions">
-            <button onclick="gatherResource('strength')">Train Strength</button>
-            <button onclick="gatherResource('endurance')">Train Endurance</button>
-            <button onclick="gatherResource('wisdom')">Study Wisdom</button>
-            <!-- Add more actions as needed -->
+        <div class="middle side">
+            <div id="actions">
+                <button onclick="gatherResource('strength')">Train Strength</button>
+                <button onclick="gatherResource('endurance')">Train Endurance</button>
+                <button onclick="gatherResource('wisdom')">Study Wisdom</button>
+                <!-- Add more actions as needed -->
+            </div>
         </div>
-        <div id="time">Year 1, Day 5, Summer 8:00</div>
-        <button id="back-to-menu-button">Back to Menu</button>
+        <div class="right side">
+            <div id="time">Year 1, Day 5, Summer 8:00</div>
+            <div id="resources">
+                <p>Strength: <span id="strength">0</span></p>
+                <p>Endurance: <span id="endurance">0</span></p>
+                <p>Wisdom: <span id="wisdom">0</span></p>
+                <p>Honor: <span id="honor">0</span></p>
+                <!-- Add more resources as needed -->
+            </div>
+        </div>
     </div>
     <script src="js/script.js"></script>
 </body>
